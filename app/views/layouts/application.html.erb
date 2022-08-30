@@ -9,7 +9,20 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
-  <%= render 'layouts/navbar' %>
-    <%= yield %>
-  </body>
-</html>
+    <%= render 'layouts/navbar' %>
+    <% if flash[:notice] %>
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <% if flash[:alerts] %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= flash[:alerts] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <% end %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+    </body>
+  </html>
